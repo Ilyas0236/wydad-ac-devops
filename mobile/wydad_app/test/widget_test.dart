@@ -1,30 +1,32 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:wydad_app/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App affiche le titre Wydad AC', (WidgetTester tester) async {
+    // J'ouvre l'application
+    await tester.pumpWidget(const WydadApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Je vérifie que le texte "Wydad AC" est présent dans l'AppBar
+    expect(find.text('Wydad AC'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Je vérifie que le texte "Bienvenue chez Wydad AC" est présent
+    expect(find.text('Bienvenue chez Wydad AC'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Je vérifie que le bouton "Connexion" est présent
+    expect(find.text('Connexion'), findsOneWidget);
+  });
+
+  testWidgets('Navigation vers login fonctionne', (WidgetTester tester) async {
+    // J'ouvre l'application
+    await tester.pumpWidget(const WydadApp());
+
+    // Je clique sur le bouton "Connexion"
+    await tester.tap(find.text('Connexion'));
+    
+    // J'attends que la page change
+    await tester.pumpAndSettle();
+
+    // Je vérifie que je suis sur la page login
+    expect(find.text('Page Login - En construction'), findsOneWidget);
   });
 }
