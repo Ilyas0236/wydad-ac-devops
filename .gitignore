@@ -1,0 +1,26 @@
+# Java / Maven
+*/target/
+*.jar
+*.class
+
+# Flutter
+mobile/*/build/
+mobile/*/.dart_tool/
+mobile/*/.packages
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Terraform
+infra/*/.terraform/
+infra/*/*.tfstate
+infra/*/*.tfstate.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env
